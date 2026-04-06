@@ -293,7 +293,7 @@
            ========================================= */
         .skills-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 32px;
         }
 
@@ -318,20 +318,64 @@
             gap: 10px;
         }
 
-        /* Gaya Tag/Pill untuk daftar keahlian */
-        .skill-tags {
+        /* Gaya Accordion untuk daftar keahlian */
+        .skill-accordion {
             display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
+            flex-direction: column;
+            gap: 12px;
         }
 
-        .tag {
+        .skill-item {
             background-color: var(--accent-bg);
-            color: var(--accent-blue);
-            padding: 8px 16px;
-            border-radius: 999px;
-            font-size: 0.85rem;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+        }
+
+        .skill-item[open] {
+            border-color: rgba(37, 99, 235, 0.2);
+            background-color: #ffffff;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
+        }
+
+        .skill-summary {
+            padding: 14px 16px;
+            font-size: 0.9rem;
             font-weight: 600;
+            color: var(--accent-blue);
+            cursor: pointer;
+            list-style: none; /* Menyembunyikan ikon panah bawaan */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            user-select: none;
+        }
+
+        .skill-summary::-webkit-details-marker {
+            display: none; /* Untuk browser Safari */
+        }
+
+        .skill-summary::after {
+            content: '+';
+            font-size: 1.2rem;
+            font-weight: 400;
+            transition: transform 0.3s ease;
+        }
+
+        .skill-item[open] .skill-summary::after {
+            transform: rotate(45deg); /* Mengubah + menjadi x saat dibuka */
+        }
+
+        .skill-detail {
+            padding: 0 16px 16px 16px;
+            font-size: 0.85rem;
+            color: var(--text-gray);
+            line-height: 1.7;
+            animation: fadeInDown 0.3s ease-in-out;
+            border-top: 1px solid rgba(37, 99, 235, 0.1);
+            margin-top: -4px;
+            padding-top: 12px;
         }
 
         /* =========================================
@@ -599,7 +643,7 @@
             <div class="hero-content animate-up">
                 <span class="greeting">Halo, Saya Adzikri Immam Alfarisi</span>
                 <h1 class="hero-title">Memadukan Logika Sains dengan Kreativitas Visual.</h1>
-                <p class="hero-subtitle">Seorang Web Developer, Graphic Designer, dan pelajar yang berfokus pada efisiensi dan estetika minimalis. Berkomitmen untuk terus berkembang dan menciptakan karya yang memberikan dampak nyata.</p>
+                <p class="hero-subtitle">Seorang Web Developer, Video Editor, Graphic Designer, dan pelajar yang berfokus pada efisiensi dan estetika minimalis. Berkomitmen untuk terus berkembang dan menciptakan karya yang memberikan dampak nyata.</p>
                 <div class="btn-group">
                     <a href="#proyek" class="btn btn-primary">Lihat Proyek Saya</a>
                     <a href="#kontak" class="btn btn-outline">Hubungi Saya</a>
@@ -634,39 +678,77 @@
                 
                 <div class="skill-group">
                     <h3 class="skill-title">Web Development</h3>
-                    <div class="skill-tags">
-                        <span class="tag">HTML</span>
-                        <span class="tag">CSS</span>
-                        <span class="tag">Git</span>
-                        <span class="tag">GitHub</span>
-                        <span class="tag">Vercel</span>
+                    <div class="skill-accordion">
+                        <details class="skill-item">
+                            <summary class="skill-summary">HTML & CSS</summary>
+                            <div class="skill-detail">Telah menggali dan mempelajari fondasi web ini sejak bangku SMP. Proses belajar panjang tersebut membuat saya cukup mahir merancang struktur dan gaya website yang responsif saat ini.</div>
+                        </details>
+                        <details class="skill-item">
+                            <summary class="skill-summary">Git & GitHub</summary>
+                            <div class="skill-detail">Mulai saya pelajari sejak SMP. Kini saya sudah cukup mahir menggunakan <i>version control</i> ini untuk melacak perubahan dan mengelola kode proyek secara rapi dan profesional.</div>
+                        </details>
+                        <details class="skill-item">
+                            <summary class="skill-summary">Vercel</summary>
+                            <div class="skill-detail">Sejalan dengan eksplorasi pemrograman web sejak SMP, saya telah terbiasa dan mahir melakukan <i>deployment</i> website secara <i>live</i> untuk performa situs yang cepat.</div>
+                        </details>
                     </div>
                 </div>
 
                 <div class="skill-group">
                     <h3 class="skill-title">Visual Design</h3>
-                    <div class="skill-tags">
-                        <span class="tag">Logo Esport Minimalis</span>
-                        <span class="tag">Desain Layout</span>
-                        <span class="tag">Tipografi</span>
+                    <div class="skill-accordion">
+                        <details class="skill-item">
+                            <summary class="skill-summary">Desain Katalog</summary>
+                            <div class="skill-detail">Berpengalaman menyusun tata letak dalam skala besar. Saya sangat mahir mengoperasikan perangkat lunak desain umum untuk menciptakan katalog yang rapi dan konsisten.</div>
+                        </details>
+                        <details class="skill-item">
+                            <summary class="skill-summary">Tipografi</summary>
+                            <div class="skill-detail">Memahami seni mengatur teks dan hierarki informasi. Saya mahir menggunakan <i>software</i> desain standar untuk memastikan visual selalu estetis dan mudah dibaca.</div>
+                        </details>
+                        <details class="skill-item">
+                            <summary class="skill-summary">Desain Logo</summary>
+                            <div class="skill-detail">Mampu memvisualisasikan identitas <i>brand</i> secara minimalis. Saya mahir menggunakan <i>software</i> pengolah vektor yang umum digunakan oleh para desainer profesional.</div>
+                        </details>
+                        <details class="skill-item">
+                            <summary class="skill-summary">Video Editing</summary>
+                            <div class="skill-detail">Memiliki insting untuk ritme visual dan transisi klip. Saya mahir mengoperasikan perangkat lunak penyuntingan video standar industri untuk berbagai kebutuhan konten.</div>
+                        </details>
                     </div>
                 </div>
 
                 <div class="skill-group">
                     <h3 class="skill-title">Bisnis & Admin</h3>
-                    <div class="skill-tags">
-                        <span class="tag">Copywriting Web</span>
-                        <span class="tag">Penyusunan Katalog</span>
-                        <span class="tag">Data Entry</span>
+                    <div class="skill-accordion">
+                        <details class="skill-item">
+                            <summary class="skill-summary">Copywriting Web</summary>
+                            <div class="skill-detail">Mulai saya pelajari secara mendalam sejak kelas 10. Kini saya cukup mahir merangkai kata-kata persuasif untuk kebutuhan <i>landing page</i> dan komunikasi digital.</div>
+                        </details>
+                        <details class="skill-item">
+                            <summary class="skill-summary">Penyusunan Katalog</summary>
+                            <div class="skill-detail">Keahlian organisasi data yang saya pelajari sejak kelas 10. Sekarang saya mahir dan terbiasa menyusun ratusan informasi produk dengan sangat teliti dan sistematis.</div>
+                        </details>
+                        <details class="skill-item">
+                            <summary class="skill-summary">Data Entry</summary>
+                            <div class="skill-detail">Berawal dari praktik administrasi sejak kelas 10, saya kini cukup mahir memasukkan serta mengelola data dalam jumlah besar dengan kecepatan dan tingkat akurasi tinggi.</div>
+                        </details>
                     </div>
                 </div>
 
                 <div class="skill-group">
                     <h3 class="skill-title">Soft Skills</h3>
-                    <div class="skill-tags">
-                        <span class="tag">Manajemen Waktu</span>
-                        <span class="tag">Problem Solving</span>
-                        <span class="tag">Adaptabilitas</span>
+                    <div class="skill-accordion">
+                        <details class="skill-item">
+                            <summary class="skill-summary">Manajemen Waktu</summary>
+                            <div class="skill-detail">Mampu menentukan prioritas kerja dengan baik sehingga setiap proyek dan tenggat waktu dapat diselesaikan secara tepat waktu tanpa mengorbankan kualitas akhir.</div>
+                        </details>
+                        <details class="skill-item">
+                            <summary class="skill-summary">Problem Solving</summary>
+                            <div class="skill-detail">Memiliki pola pikir analitis. Saya terbiasa mencari akar permasalahan dan menemukan solusi paling efektif, baik itu kendala teknis *coding* maupun masalah visual.</div>
+                        </details>
+                        <details class="skill-item">
+                            <summary class="skill-summary">Adaptabilitas</summary>
+                            <div class="skill-detail">Sangat fleksibel dan cepat belajar. Saya mudah menyesuaikan diri dengan perangkat lunak baru, tren teknologi terkini, dan tuntutan proyek yang berubah-ubah.</div>
+                        </details>
                     </div>
                 </div>
 
@@ -728,13 +810,13 @@
                     <p class="contact-text">
                         Sedang mencari seseorang yang teliti, berdedikasi, dan siap bekerja keras untuk proyek Anda berikutnya? Baik itu untuk kebutuhan desain, pengembangan web, atau peluang kerja profesional, saya selalu terbuka untuk diskusi baru.
                     </p>
-                    <a href="mailto:adzikrialfarisi@gmail.com" class="btn btn-primary">Kirim Pesan via Email</a>
+                    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=adzikrialfarisi@gmail.com" target="_blank" class="btn btn-primary">Kirim Pesan via Email</a>
                 </div>
                 
                 <div class="contact-details">
                     <div class="contact-item">
                         <span class="contact-label">Email</span>
-                        <span class="contact-value"><a href="mailto:adzikrialfarisi@gmail.com">adzikrialfarisi@gmail.com</a></span>
+                        <span class="contact-value"><a href="https://mail.google.com/mail/?view=cm&fs=1&to=adzikrialfarisi@gmail.com" target="_blank">adzikrialfarisi@gmail.com</a></span>
                     </div>
                     <div class="contact-item">
                         <span class="contact-label">WhatsApp</span>
